@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>CucumberPOMSeriesByKaranJulySeven</groupId>
+	<artifactId>CucumberPOMSeriesByKaranJulySevenA</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<name>CucumberPOMSeries</name>
+	<!-- FIXME change it to the project's website -->
+	<url>http://www.example.com</url>
+
+	<properties>
+		<!--all properties and the version numbers are mentioned within properties -->
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>11</java.version>
+		<junit.version>4.13.1</junit.version>
+		<cucumber.version>6.9.0</cucumber.version>
+		<maven.compiler.version>3.8.1</maven.compiler.version>
+		<maven.surefire.version>2.22.2</maven.surefire.version>
+		<serenity.version>2.3.12</serenity.version>
+		<serenity.maven.version>2.3.12</serenity.maven.version>
+		<serenity.cucumber.version>2.3.12</serenity.cucumber.version>
+
+	</properties>
+
+	<dependencies>
+
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.141.59</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>4.2.2</version>
+		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber6-adapter -->
+		<dependency>
+			<groupId>tech.grasshopper</groupId>
+			<artifactId>extentreports-cucumber6-adapter</artifactId>
+			<version>2.17.0</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.14.3</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>4.1.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>4.1.2</version>
+		</dependency>
+		
+		<!--dependencies for serenity report -->
+		<dependency>
+			<groupId>net.serenity-bdd</groupId>
+			<artifactId>serenity-core</artifactId>
+			<version>${serenity.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!--dependencies for serenity report -->
+		<dependency>
+			<groupId>net.serenity-bdd</groupId>
+			<artifactId>serenity-junit</artifactId>
+			<version>${serenity.version}</version>
+		</dependency>
+		
+		<!--dependencies for serenity report -->
+		<dependency>
+			<groupId>net.serenity-bdd</groupId>
+			<artifactId>serenity-ensure</artifactId>
+			<version>${serenity.version}</version>
+		</dependency>
+		
+		<!--dependencies for serenity report -->
+		<dependency>
+			<groupId>net.serenity-bdd</groupId>
+			<artifactId>serenity-cucumber6</artifactId>
+			<version>${serenity.cucumber.version}</version>
+		</dependency>
+
+
+	</dependencies>
+
+	<build>
+		<plugins>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.version}</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.version}</version>
+				<configuration>
+					<!-- to run with jenkins and to run using maven use the below includes -->
+					<includes>
+						<include>**/SerenityTestRunner.java</include>
+					</includes>
+					<parallel>methods</parallel>
+					<!--<threadCount>4</threadCount>-->
+					<useUnlimitedThreads>true</useUnlimitedThreads>
+				</configuration>
+			</plugin>
+
+		<!--	<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>3.1.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+						<configuration> -->
+							<!-- UNCOMMENT - To add any exclusions if required -->
+							<!-- <excludes> <exclude>**/*IT*.java</exclude>
+							</excludes>  -->
+						<!--	<includes> -->
+								<!--UNCOMMENT BELOW LINE - To execute feature files with a single runner -->
+								<!--give path of runner in the below step -->
+							<!--	<include>**/MyTestRunner.java</include> -->
+								<!--	UNCOMMENT BELOW LINE - To execute feature
+								files with multiple runners -->
+								<!-- <include>**/*Runner.java</include> -->
+							<!--</includes> -->
+							<!-- UNCOMMENT BELOW 3 LINES - To execute using
+							parallel or combination 
+				option -->
+							<!-- we can write parallel with classes also.-->
+						<!--	<parallel>methods</parallel>
+							<threadCount>10</threadCount>
+							<perCoreThreadCount>true</perCoreThreadCount> -->
+							<!-- UNCOMMENT BELOW 3 LINES - To execute using
+							forking or combination option -->
+							<!-- <forkCount>2</forkCount>
+							<reuseForks>true</reuseForks>
+							<reportsDirectory>${project.build.directory}/failsafe-reports_${surefire.forkNumber}</reportsDirectory>-->
+						<!--</configuration>
+					</execution>
+				</executions>
+			</plugin>-->
+
+<!-- using serenity core it will generate serenity report by clubbing all the feature files. it will create aggregate
+report. hence we are giving aggregate. -->
+
+<plugin>
+	<groupId>net.serenity-bdd.maven.plugins</groupId>
+	<artifactId>serenity-maven-plugin</artifactId>
+	<version>${serenity.maven.version}</version>
+	<configuration>
+		<tags>${tags}</tags>
+	</configuration>
+	<dependencies>
+		<dependency>
+			<groupId>net.serenity-bdd</groupId>
+			<artifactId>serenity-core</artifactId>
+			<version>${serenity.version}</version>
+		</dependency>
+	</dependencies>
+	<executions>
+		<execution>
+			<id>serenity-reports</id>
+			<phase>post-integration-test</phase>
+			<goals>
+				<goal>aggregate</goal>
+			</goals>
+		</execution>
+	</executions>
+</plugin>
+
+		</plugins>
+	</build>
+</project>
